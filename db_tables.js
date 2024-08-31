@@ -7,7 +7,7 @@ async function createMartyrsTable() {
                 id SERIAL PRIMARY KEY,
                 martyr_name VARCHAR(255) NOT NULL,
                 martyr_place VARCHAR(255),
-                martyr_date DATE
+                martyr_date VARCHAR(20)
             );
         `);
         console.log('Martyrs table created successfully!');
@@ -74,13 +74,24 @@ async function createDisbursementsTable(){
             `CREATE TABLE IF NOT EXISTS disbursements (
                 id SERIAL PRIMARY KEY,
                 scholarship_id INT REFERENCES scholarships(id) ON DELETE CASCADE,
-                date DATE,
+                date VARCHAR(20),
                 remark TEXT
             );`
         );
         console.log('disbursements table created successfully');
     } catch (error) {
         console.error('Error creating disbursements table ', error);
+    }
+}
+
+async function miscFunction() {
+    try {
+        await query(
+            'ALTER TABLE disbursements ALTER COLUMN date TYPE VARCHAR(20);'
+        );
+        console.log('Misc query executed successfully');
+    } catch (error) {
+        console.log('Error in misc query ', error);
     }
 }
 
@@ -91,3 +102,4 @@ async function createDisbursementsTable(){
 // createDonorsTable();
 // createScholarshipsTable();
 // createDisbursementsTable();
+// miscFunction();
