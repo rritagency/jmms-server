@@ -39,8 +39,8 @@ async function createDonorsTable() {
         await query(`
             CREATE TABLE IF NOT EXISTS donors (
                 id SERIAL PRIMARY KEY,
-                donor_name VARCHAR(255),
-                donor_email VARCHAR(255),
+                donor_name VARCHAR(100),
+                donor_email VARCHAR(50),
                 donor_phone VARCHAR(20)
             );
         `);
@@ -75,7 +75,7 @@ async function createDisbursementsTable(){
                 id SERIAL PRIMARY KEY,
                 scholarship_id INT REFERENCES scholarships(id) ON DELETE CASCADE,
                 date VARCHAR(20),
-                remark TEXT
+                remark VARCHAR(255)
             );`
         );
         console.log('disbursements table created successfully');
