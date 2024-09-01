@@ -258,7 +258,7 @@ router.post('/scholarships', async (req, res) => {
 // READ all scholarships
 router.get('/scholarships', async (req, res) => {
     try {
-        const scholarships = await pool.query('SELECT * FROM scholarships;');
+        const scholarships = await pool.query('SELECT * FROM scholarships ORDER BY id ASC;');
         res.json(scholarships.rows);
     } catch (error) {
         console.error('Error reading all scholarships', error.message);
