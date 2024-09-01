@@ -5,7 +5,7 @@ async function createMartyrsTable() {
         await query(`
             CREATE TABLE IF NOT EXISTS martyrs (
                 id SERIAL PRIMARY KEY,
-                martyr_name VARCHAR(255) NOT NULL,
+                martyr_name VARCHAR(255),
                 martyr_place VARCHAR(255),
                 martyr_date VARCHAR(20)
             );
@@ -21,7 +21,7 @@ async function createStudentsTable() {
         await query(
             `CREATE TABLE IF NOT EXISTS students (
                 id SERIAL PRIMARY KEY,
-                student_name VARCHAR(100) NOT NULL,
+                student_name VARCHAR(100),
                 student_school VARCHAR(255),
                 student_class VARCHAR(50),
                 student_district VARCHAR(100),
@@ -40,7 +40,7 @@ async function createDonorsTable() {
             CREATE TABLE IF NOT EXISTS donors (
                 id SERIAL PRIMARY KEY,
                 donor_name VARCHAR(255),
-                donor_email VARCHAR(255) NOT NULL,
+                donor_email VARCHAR(255),
                 donor_phone VARCHAR(20)
             );
         `);
@@ -87,7 +87,7 @@ async function createDisbursementsTable(){
 async function miscFunction() {
     try {
         await query(
-            'ALTER TABLE disbursements ALTER COLUMN date TYPE VARCHAR(20);'
+            'ALTER TABLE donors ALTER COLUMN donor_email DROP NOT NULL;'
         );
         console.log('Misc query executed successfully');
     } catch (error) {
